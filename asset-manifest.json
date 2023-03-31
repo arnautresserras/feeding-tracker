@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/feeding-tracker/static/css/main.4c4416cf.css",
+    "main.js": "/feeding-tracker/static/js/main.50215b5c.js",
+    "static/js/787.43895483.chunk.js": "/feeding-tracker/static/js/787.43895483.chunk.js",
+    "index.html": "/feeding-tracker/index.html",
+    "main.4c4416cf.css.map": "/feeding-tracker/static/css/main.4c4416cf.css.map",
+    "main.50215b5c.js.map": "/feeding-tracker/static/js/main.50215b5c.js.map",
+    "787.43895483.chunk.js.map": "/feeding-tracker/static/js/787.43895483.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.4c4416cf.css",
+    "static/js/main.50215b5c.js"
+  ]
+}
