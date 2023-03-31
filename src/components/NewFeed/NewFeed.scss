@@ -9,13 +9,11 @@
         align-items: center;
         justify-content: space-between;
     }
+    & .NewFeed-timer{
+        font-size: 1.5rem;
+    }
     & button{
-        margin: 0 .2rem;
         padding: 1rem 2rem;
-        border: 2px solid transparent;
-        border-radius: .5rem;
-        background-color: paleturquoise;
-        font-weight: bold;
         &.active{
             border: 2px solid darkcyan;
         }

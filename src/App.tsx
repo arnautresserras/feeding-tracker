@@ -1,11 +1,18 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import LastFeed from './components/LastFeed/LastFeed';
 import './App.css';
 import NewFeed from './components/NewFeed/NewFeed';
+import { BsMoonStars, BsSun } from "react-icons/bs";
 
 function App() {
 
   const [newFeed, setNewFeed] = useState(false);
+  const [lastSide, setLastSide] = useState("");
+  const [darkMode, setDarkMode] = useState(false);
+
+  useEffect(() => {
+    setLastSide(localStorage.getItem("lastSide") ?? "");
+  }, [])
 
   const trackTime = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     const current =  new Date;
@@ -14,15 +21,19 @@ function App() {
   }
 
   return (
-    <div>
+    <div className={`App ${darkMode ? 'dark' : ''}`}>
+      <div className="App-mode">
+        <button onClick={() => setDarkMode(!darkMode)}>
+          {darkMode ? <BsSun /> : <BsMoonStars/>}
+        </button>
+      </div>
+      <h1 className='title'>Baby feeding tracker</h1>
       {newFeed ? (
-        <div className="App">
-          <NewFeed setNewFeed={setNewFeed}></NewFeed>
-        </div>
+          <NewFeed setNewFeed={setNewFeed} setLastSide={setLastSide}></NewFeed>
       ) : (
-        <div className='App'>
-          <button onClick={e => trackTime(e)}>+ Track feed</button>
-          <LastFeed></LastFeed>
+        <div className='App-content'>
+          <button className='track-feed' onClick={e => trackTime(e)}>Start feed</button>
+          <LastFeed side={lastSide}/>
         </div>
       )}
     </div>

@@ -2,17 +2,47 @@
   width: 100vw;
   height: 100vh;
   display: flex;
+  position: relative;
   flex-direction: column;
   align-items: center;
-  justify-content: center; }
+  justify-content: flex-start; }
+
+.App * {
+  font-family: 'Montserrat', sans-serif;
+  color: #111; }
+
+.App.dark {
+  background-color: #111; }
+
+.App.dark h1, .App.dark h2, .App.dark p, .App.dark span {
+  color: #fff; }
+
+.App.dark button {
+  background-color: sandybrown; }
+
+.App.dark button.active {
+  border: 2px solid #fce2cc; }
+
+.App .title {
+  margin: 4rem auto; }
 
 .App button {
   margin: 0 .2rem;
-  padding: 1rem 2rem;
+  padding: 1rem;
   border: 2px solid transparent;
   border-radius: .5rem;
-  background-color: paleturquoise;
-  font-weight: bold; }
+  background-color: turquoise; }
 
 .App button.active {
   border: 2px solid darkcyan; }
+
+.App .track-feed {
+  font-size: 1.5rem; }
+
+.App .App-mode {
+  align-self: flex-end;
+  margin-top: 3px; }
+
+.App .App-content {
+  display: flex;
+  flex-direction: column; }

@@ -8,7 +8,8 @@
 
 .LastFeed-row {
   display: flex;
-  flex-direction: row; }
+  flex-direction: row;
+  margin: .2rem 0; }
 
 .LastFeed p {
   margin: 0;

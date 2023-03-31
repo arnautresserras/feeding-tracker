@@ -3,6 +3,7 @@ import './NewFeed.css';
 
 interface Props {
     setNewFeed: React.Dispatch<React.SetStateAction<boolean>>;
+    setLastSide: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const NewFeed = (props: Props) => {
@@ -36,6 +37,10 @@ const NewFeed = (props: Props) => {
     };
 
     const endFeed = () => {
+        const current =  new Date;
+        localStorage.setItem("lastFeedEnd", current.getTime().toString());
+        localStorage.setItem("lastFeedSide", activeSide);
+        props.setLastSide(activeSide);
         props.setNewFeed(false);
     }
 
@@ -54,7 +59,7 @@ const NewFeed = (props: Props) => {
                 </button>
             </div>
             <div className="NewFeed-row">
-                <p>
+                <p className='NewFeed-timer'>
                     <span>{`${formatTime(hours)}:${formatTime(minutes)}:${formatTime(seconds)}`}</span>
                 </p>
             </div>
