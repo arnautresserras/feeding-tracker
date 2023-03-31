@@ -1,0 +1,15 @@
+.LastFeed {
+  display: flex;
+  flex-direction: column;
+  margin: 2rem auto;
+  width: 50vw;
+  align-items: center;
+  justify-content: center; }
+
+.LastFeed-row {
+  display: flex;
+  flex-direction: row; }
+
+.LastFeed p {
+  margin: 0;
+  padding: 0; }

@@ -1,12 +1,16 @@
-.App {
-  width: 100vw;
-  height: 100vh;
+.NewFeed {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center; }
 
-.App button {
+.NewFeed-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between; }
+
+.NewFeed button {
   margin: 0 .2rem;
   padding: 1rem 2rem;
   border: 2px solid transparent;
@@ -14,5 +18,11 @@
   background-color: paleturquoise;
   font-weight: bold; }
 
-.App button.active {
+.NewFeed button.active {
   border: 2px solid darkcyan; }
+
+.NewFeed-side {
+  font-size: 2rem; }
+
+.NewFeed-stop {
+  font-size: 1.5rem; }

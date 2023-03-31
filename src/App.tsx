@@ -1,24 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import LastFeed from './components/LastFeed/LastFeed';
 import './App.css';
+import NewFeed from './components/NewFeed/NewFeed';
 
 function App() {
+
+  const [newFeed, setNewFeed] = useState(false);
+
+  const trackTime = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    const current =  new Date;
+    setNewFeed(true);
+    localStorage.setItem("lastFeedStart", current.getTime().toString());
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {newFeed ? (
+        <div className="App">
+          <NewFeed setNewFeed={setNewFeed}></NewFeed>
+        </div>
+      ) : (
+        <div className='App'>
+          <button onClick={e => trackTime(e)}>+ Track feed</button>
+          <LastFeed></LastFeed>
+        </div>
+      )}
     </div>
   );
 }
