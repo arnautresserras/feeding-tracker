@@ -11,6 +11,7 @@ const NewFeed = (props: Props) => {
     const startTimeString = localStorage.getItem("lastFeedStart");
     const startTime = startTimeString ? new Date(+startTimeString) : null;
     const [timeDifference, setTimeDifference] = useState<number | null>(null);
+    const [emptySide, setEmptySide] = useState(false);
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -37,35 +38,73 @@ const NewFeed = (props: Props) => {
     };
 
     const endFeed = () => {
-        const current =  new Date;
+        const current =  new Date();
         localStorage.setItem("lastFeedEnd", current.getTime().toString());
+        if(activeSide === "R" || activeSide === "L") {
+            localStorage.setItem("lastFeedSide", activeSide);
+            props.setLastSide(activeSide);
+        }else{
+            setEmptySide(true);
+            return;
+        }
+        
+        props.setNewFeed(false);
+    }
+
+    const saveSide = () => {
         localStorage.setItem("lastFeedSide", activeSide);
         props.setLastSide(activeSide);
+        setEmptySide(true);
         props.setNewFeed(false);
     }
 
     return (
-        <div className="NewFeed">
-            <div className="NewFeed-row">
-                <button 
-                    className={`NewFeed-side ${activeSide == "L" ? 'active' : ''}`}
-                    onClick={() => setActiveSide("L")}>
-                        L
-                </button>
-                <button 
-                    className={`NewFeed-side ${activeSide == "R" ? 'active' : ''}`}
-                    onClick={() => setActiveSide("R")}>
-                        R
-                </button>
-            </div>
-            <div className="NewFeed-row">
-                <p className='NewFeed-timer'>
-                    <span>{`${formatTime(hours)}:${formatTime(minutes)}:${formatTime(seconds)}`}</span>
-                </p>
-            </div>
-            <div className="NewFeed-row">
-                <button className='NewFeed-stop' onClick={endFeed}>Stop</button>
-            </div>
+        <div>
+            {emptySide ? 
+                (<div className='NewFeed'>
+                    <div className='NewFeed-row'>
+                        <p className='NewFeed-side-save'>You did not select your feeding side, which side was it?</p>
+                    </div>
+                    <div className="NewFeed-row">
+                        <button 
+                            className={`NewFeed-side ${activeSide === "L" ? 'active' : ''}`}
+                            onClick={() => setActiveSide("L")}>
+                                L
+                        </button>
+                        <button 
+                            className={`NewFeed-side ${activeSide === "R" ? 'active' : ''}`}
+                            onClick={() => setActiveSide("R")}>
+                                R
+                        </button>
+                    </div>
+                    <div className="NewFeed-row NewFeed-save">
+                        <button onClick={saveSide}>Save side</button>
+                    </div>
+                </div>) : 
+                (<section className='NewFeed'>
+                    <div className="NewFeed-row">
+                        <button 
+                            className={`NewFeed-side ${activeSide === "L" ? 'active' : ''}`}
+                            onClick={() => setActiveSide("L")}>
+                                L
+                        </button>
+                        <button 
+                            className={`NewFeed-side ${activeSide === "R" ? 'active' : ''}`}
+                            onClick={() => setActiveSide("R")}>
+                                R
+                        </button>
+                    </div>
+                    <div className="NewFeed-row">
+                        <p className='NewFeed-timer'>
+                            <span>{`${formatTime(hours)}:${formatTime(minutes)}:${formatTime(seconds)}`}</span>
+                        </p>
+                    </div>
+                    <div className="NewFeed-row">
+                        <button className='NewFeed-stop' onClick={endFeed}>Stop</button>
+                    </div>
+                </section>)
+            }
+            
         </div>
     );
 }

@@ -5,12 +5,10 @@
   width: 50vw;
   align-items: center;
   justify-content: center; }
-
-.LastFeed-row {
-  display: flex;
-  flex-direction: row;
-  margin: .2rem 0; }
-
-.LastFeed p {
-  margin: 0;
-  padding: 0; }
+  .LastFeed-row {
+    display: flex;
+    flex-direction: row;
+    margin: .2rem 0; }
+  .LastFeed p {
+    margin: 0;
+    padding: 0; }

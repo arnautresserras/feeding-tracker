@@ -24,3 +24,12 @@
 
 .NewFeed-stop {
   font-size: 1.5rem; }
+
+.NewFeed-side-save {
+  padding: .5rem 2rem; }
+
+.NewFeed-save {
+  margin: 1rem 0; }
+
+.NewFeed-save button {
+  font-size: 1.5rem; }
