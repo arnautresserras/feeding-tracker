@@ -8,12 +8,12 @@ interface Props{
 const VitaminChecker = (props:Props) => {
     return (
         <button 
-            className={`VitaminChecker ${props.vitaminDrops === true ? 'active' : ''}`}
+            className="VitaminChecker"
             onClick={() => props.setVitaminDrops()}>
             {props.vitaminDrops ? (
-                <span><BsMoonStars></BsMoonStars> Vitamins done!</span>
+                <><BsMoonStars></BsMoonStars> Vitamins done!</>
             ) : (
-                <span><BsSun></BsSun> Vitamins missing today</span>
+                <><BsSun></BsSun> Vitamins missing today</>
             ) }
         </button>
     )

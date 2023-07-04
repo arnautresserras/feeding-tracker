@@ -43,9 +43,9 @@ function App() {
         <div className='App-content'>
           <button className='track-feed' onClick={e => trackTime(e)}>Start feed</button>
           <LastFeed side={lastSide}/>
+          <VitaminChecker vitaminDrops={vitaminDrops} setVitaminDrops={trackDrops}/>
         </div>
       )}
-      <VitaminChecker vitaminDrops={vitaminDrops} setVitaminDrops={trackDrops}/>
     </div>
   );
 }
