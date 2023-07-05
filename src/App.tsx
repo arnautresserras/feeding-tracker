@@ -15,7 +15,7 @@ function App() {
   const current =  new Date();
 
   useEffect(() => {
-    setLastSide(localStorage.getItem("lastSide") ?? "");
+    setLastSide(localStorage.getItem("lastFeedSide") ?? "");
     localStorage.getItem("vitaminDrops") === current.getDate().toString() ? setVitaminDrops(true) : setVitaminDrops(false);
   }, [])
 
