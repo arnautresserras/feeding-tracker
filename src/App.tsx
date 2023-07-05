@@ -11,21 +11,22 @@ function App() {
   const [lastSide, setLastSide] = useState("");
   const [darkMode, setDarkMode] = useState(false);
   const [vitaminDrops, setVitaminDrops] = useState(false);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const current =  new Date();
 
   useEffect(() => {
     setLastSide(localStorage.getItem("lastFeedSide") ?? "");
+    const current =  new Date();
     localStorage.getItem("vitaminDrops") === current.getDate().toString() ? setVitaminDrops(true) : setVitaminDrops(false);
   }, [])
 
   const trackTime = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     setNewFeed(true);
+    const current =  new Date();
     localStorage.setItem("lastFeedStart", current.getTime().toString());
   }
 
   const trackDrops = () => {
     setVitaminDrops(true);
+    const current =  new Date();
     localStorage.setItem("vitaminDrops", current.getDate().toString());
   }
 
