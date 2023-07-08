@@ -18,10 +18,20 @@ function App() {
     localStorage.getItem("vitaminDrops") === current.getDate().toString() ? setVitaminDrops(true) : setVitaminDrops(false);
   }, [])
 
+  //run function every hour to check if vitamins are done
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const current =  new Date();
+      localStorage.getItem("vitaminDrops") === current.getDate().toString() ? setVitaminDrops(true) : setVitaminDrops(false);
+    }, 7200000);
+    return () => clearInterval(interval);
+  }, [])
+
   const trackTime = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     setNewFeed(true);
     const current =  new Date();
     localStorage.setItem("lastFeedStart", current.getTime().toString());
+    localStorage.getItem("vitaminDrops") === current.getDate().toString() ? setVitaminDrops(true) : setVitaminDrops(false);
   }
 
   const trackDrops = () => {
