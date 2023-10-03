@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import './LastFeed.css';
 import { timeStamp } from 'console';
 
@@ -9,11 +9,12 @@ interface Props{
 const LastFeed = (props: Props) => {
     const startTimeString = localStorage.getItem("lastFeedStart");
     const endTimeString = localStorage.getItem("lastFeedEnd");
-    const startTime = startTimeString ? new Date(+startTimeString) : null;
+    const startTime = useMemo(() => startTimeString ? new Date(+startTimeString) : null, [startTimeString]);
     const endTime = endTimeString ? new Date(+endTimeString) : null;
     const [timeDifference, setTimeDifference] = useState<number | null>(null);
     const [feedDuration, setFeedDuration] = useState<string>("");
 
+    // Calculates the difference between the start time and end time and formats it into HH:MM:SS
     useEffect(() => {
         if(endTime && startTime){
             const diff = Math.floor((endTime.getTime() - startTime.getTime()) / 1000);
@@ -21,6 +22,8 @@ const LastFeed = (props: Props) => {
         }
     }, [])
 
+    // This code finds the difference in seconds between the start time and the current time
+    // The code is used to determine how long the user has feeding their baby.
     useEffect(() => {
         const interval = setInterval(() => {
             const endTime = new Date();
@@ -32,6 +35,15 @@ const LastFeed = (props: Props) => {
             }, 1000);
         return () => clearInterval(interval);
     }, [startTime]);
+    
+    if (!startTime) {
+        return (
+            <section className='LastFeed'>
+                <div className='LastFeed-row'>
+                    <span>No previous feed found.</span>
+                </div>
+            </section>);
+    }
 
     if (!startTime) {
         return (

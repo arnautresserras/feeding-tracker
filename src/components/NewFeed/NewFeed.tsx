@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import './NewFeed.css';
 
 interface Props {
@@ -9,7 +9,7 @@ interface Props {
 const NewFeed = (props: Props) => {
     const [activeSide, setActiveSide] = useState('');
     const startTimeString = localStorage.getItem("lastFeedStart");
-    const startTime = startTimeString ? new Date(+startTimeString) : null;
+    const startTime = useMemo(() => startTimeString ? new Date(+startTimeString) : null, [startTimeString]);
     const [timeDifference, setTimeDifference] = useState<number | null>(null);
     const [emptySide, setEmptySide] = useState(false);
 
@@ -98,6 +98,7 @@ const NewFeed = (props: Props) => {
                         <p className='NewFeed-timer'>
                             <span>{`${formatTime(hours)}:${formatTime(minutes)}:${formatTime(seconds)}`}</span>
                         </p>
+
                     </div>
                     <div className="NewFeed-row">
                         <button className='NewFeed-stop' onClick={endFeed}>Stop</button>
